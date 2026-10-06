@@ -6,9 +6,11 @@ Group5: Kairui & Neil
 - `/fishStreet/Tombstone.java` -  burial record (name, date, age, location); Comparable
 - `/fishStreet/Cemetery.java` - reads/stores file in a `TreeSet`; dates
 - `/fishStreet/FishStreet.java` - main.
+- `.gitignore` - ignoring error logs and class files
 
-## How to run
+## How to run / Intructiosn
 from root folder
+
     javac group5/fishStreet/*.java
     java group5.fishStreet.FishStreet
 
