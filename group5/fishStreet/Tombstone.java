@@ -1,7 +1,7 @@
 package group5.fishStreet;
 
 import java.time.LocalDate;
-
+// idk why but i included a month file 
 public class Tombstone implements Comparable<Tombstone> {
 
     public static final int DAYS_PER_MONTH = 30;
@@ -17,7 +17,7 @@ public class Tombstone implements Comparable<Tombstone> {
     private final String ageText;
     private final long ageInDays;
     private final String location;
-
+// constructor for the Tombstone class, which takes in the name, burial date, age text, and location of the person buried
     public Tombstone(String name, LocalDate burialDate, String ageText, String location) {
         this.name = name.trim();
         this.burialDate = burialDate;
@@ -25,7 +25,7 @@ public class Tombstone implements Comparable<Tombstone> {
         this.ageInDays = parseAgeToDays(this.ageText);
         this.location = location.trim();
     }
-
+// method to parse the age text into days, which can handle different formats of age (e.g. "2y 3m", "1w", "5d")
     public static long parseAgeToDays(String raw) {
         String s = raw.trim().toLowerCase();
         if (s.isEmpty()) {
@@ -76,7 +76,7 @@ public class Tombstone implements Comparable<Tombstone> {
     public String getAgeText() { return ageText; }
     public long getAgeInDays() { return ageInDays; }
     public String getLocation() { return location; }
-
+    // comparables
     @Override
     public int compareTo(Tombstone o) {
         int c = burialDate.compareTo(o.burialDate);
@@ -110,7 +110,7 @@ public class Tombstone implements Comparable<Tombstone> {
                 + "/" + burialDate.getYear();
         return hasAge() ? s + " " + ageText : s;
     }
-
+    // method to format a LocalDate object into a string in the format "dd MMM yyyy"
     public static String longDate(LocalDate d) {
         return String.format("%02d %s %d", d.getDayOfMonth(), MONTH_NAMES[d.getMonthValue() - 1], d.getYear());
     }

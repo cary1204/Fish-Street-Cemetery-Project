@@ -6,7 +6,8 @@ import java.util.*;
 import java.util.regex.*;
 
 public class Cemetery {
-
+    
+    // used a pattern to read from the pattern of the text file, and a numeric pattern to read from the numeric format of the text file
     private static final Pattern LINE = Pattern.compile(
             "^(.+?)\\s+(\\d{1,2})\\s+([A-Za-z]{3,9})\\.?\\s+(\\d{4})(?:\\s+(\\d+(?:\\.\\d+)?[wdmWDM]?)(?=\\s|$))?\\s*(.*)$");
 
@@ -16,6 +17,7 @@ public class Cemetery {
     private int linesRead = 0;
     private int linesSkipped = 0;
     private int duplicatesRemoved = 0;
+
 
     public void load(String fileName) throws IOException {
         try (BufferedReader in = new BufferedReader(new FileReader(fileName))) {
@@ -35,6 +37,7 @@ public class Cemetery {
         }
     }
 
+        // also a pettern to read from the numeric format of the text file, and a method to parse the line into a Tombstone object
     private static final Pattern NUMERIC_LINE = Pattern.compile(
             "^(.+?)\\s+(\\d{1,2})[/-](\\d{1,2})[/-](\\d{4})(?:\\s+(\\d+(?:\\.\\d+)?[wdmWDM]?)(?=\\s|$))?\\s*(.*)$");
 
@@ -62,7 +65,7 @@ public class Cemetery {
             return null;
         }
     }
-
+    // methods to get the size of the tombstones, lines read, lines skipped, and duplicates removed
     public int size() { return tombstones.size(); }
     public int getLinesRead() { return linesRead; }
     public int getLinesSkipped() { return linesSkipped; }
@@ -75,7 +78,7 @@ public class Cemetery {
     public List<Tombstone> buriedOn(LocalDate date) {
         return range(date, date, null);
     }
-
+    // method to find all burials in a date range, with optional location
     public List<Tombstone> range(LocalDate start, LocalDate end, String location) {
         List<Tombstone> result = new ArrayList<>();
         if (start.isAfter(end)) {
@@ -92,7 +95,7 @@ public class Cemetery {
         }
         return result;
     }
-
+    // method to calculate the average age in days of a list of Tombstone objects
     public static long averageAgeDays(List<Tombstone> people) {
         long total = 0;
         int counted = 0;

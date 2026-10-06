@@ -5,11 +5,11 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class FishStreet {
-
+    // displat the month with first 3 letter
     private static final String[] MONTHS = {"jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"};
 
     public static void main(String[] args) {
-        String file = args.length > 0 ? args[0] : "cemetery.txt";
+        String file = args.length > 0 ? args[0] : "cemetery.txt"; //scanner
         Cemetery cemetery = new Cemetery();
         try {
             cemetery.load(file);
@@ -17,14 +17,14 @@ public class FishStreet {
             System.out.println("Could not read " + file + ": " + e.getMessage());
             System.out.println("Run from the folder containing cemetery.txt, or pass its path as an argument.");
             return;
-        }
+        } // some error handling for file reading from stackoverflow
         System.out.println("Loaded " + cemetery.size() + " burials ("
                 + cemetery.getDuplicatesRemoved() + " duplicates removed, "
                 + cemetery.getLinesSkipped() + " unreadable lines skipped).");
 
         Scanner in = new Scanner(System.in);
         boolean running = true;
-        while (running) {
+        while (running) { // while loop to keep the program running until user chooses to quit
             System.out.println();
             System.out.println("[1] Specific date");
             System.out.println("[2] Burials in a date range at a location");
@@ -49,7 +49,7 @@ public class FishStreet {
         }
     }
 
-    private static void byDate(Cemetery c, Scanner in) {
+    private static void byDate(Cemetery c, Scanner in) { //find all burials on a specific date
         System.out.println();
         LocalDate d = askDate(in, "Enter a Date: ");
         if (d == null) return;
@@ -64,6 +64,8 @@ public class FishStreet {
     }
 
     private static void byRange(Cemetery c, Scanner in, boolean withLocation) {
+         //find all burials in a date range, with optional location
+         //used boolean to avoid 1 more method
         System.out.println();
         LocalDate start = askDate(in, "Enter start date: ");
         if (start == null) return;
@@ -78,6 +80,7 @@ public class FishStreet {
             System.out.print("Enter location: ");
             location = in.hasNextLine() ? in.nextLine().trim() : "";
         }
+
         List<Tombstone> found = c.range(start, end, location);
         String header = "From (" + Tombstone.longDate(start) + ") to (" + Tombstone.longDate(end) + ")";
         if (withLocation && location != null && !location.isEmpty()) {
@@ -91,8 +94,9 @@ public class FishStreet {
         }
     }
 
-    private static LocalDate askDate(Scanner in, String prompt) {
-        System.out.print(prompt);
+    private static LocalDate askDate(Scanner in, String date) {
+        // using the treeset to quick find o(1)
+        System.out.print(date);
         if (!in.hasNextLine()) return null;
         String text = in.nextLine().trim();
         try {
