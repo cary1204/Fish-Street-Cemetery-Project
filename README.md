@@ -35,7 +35,7 @@ Pick a menu option, then follow the prompts. Dates are `mm/dd/yyyy` (e.g. `01/05
 
 ## References
 
-Bing Search AI was used for some of the researches
+Bing Search AI/Google Search AI was used for some of the researches
  
 - Compiling and running classes in a package from the command line:
   - https://gurubase.io/g/java/executing-java-program-packages-command-line

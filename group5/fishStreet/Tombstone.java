@@ -1,4 +1,4 @@
-package group1.fishStreet;
+package group5.fishStreet;
 
 import java.time.LocalDate;
 
@@ -60,7 +60,15 @@ public class Tombstone implements Comparable<Tombstone> {
         long years = totalDays / DAYS_PER_YEAR;
         long months = (totalDays % DAYS_PER_YEAR) / DAYS_PER_MONTH;
         long days = totalDays % DAYS_PER_MONTH;
-        return years + " years, " + months + " months and " + days + " days";
+        return unit(years, "year") + ", " + unit(months, "month") + ", and " + unit(days, "day");
+    }
+
+    private static String unit(long n, String word) {
+        return n + " " + word + (n == 1 ? "" : "s");
+    }
+
+    public boolean hasAge() {
+        return !ageText.isEmpty();
     }
 
     public String getName() { return name; }
@@ -98,8 +106,12 @@ public class Tombstone implements Comparable<Tombstone> {
 
     @Override
     public String toString() {
-        String date = String.format("%02d %s %d", burialDate.getDayOfMonth(),
-                MONTH_NAMES[burialDate.getMonthValue() - 1], burialDate.getYear());
-        return String.format("%-28s %-12s %-8s %s", name, date, ageText, location);
+        String s = name + " " + burialDate.getMonthValue() + "/" + burialDate.getDayOfMonth()
+                + "/" + burialDate.getYear();
+        return hasAge() ? s + " " + ageText : s;
+    }
+
+    public static String longDate(LocalDate d) {
+        return String.format("%02d %s %d", d.getDayOfMonth(), MONTH_NAMES[d.getMonthValue() - 1], d.getYear());
     }
 }

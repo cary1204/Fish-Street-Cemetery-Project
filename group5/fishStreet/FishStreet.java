@@ -1,10 +1,12 @@
-package group1.fishStreet;
+package group5.fishStreet;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 
 public class FishStreet {
+
+    private static final String[] MONTHS = {"jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"};
 
     public static void main(String[] args) {
         String file = args.length > 0 ? args[0] : "cemetery.txt";
@@ -16,19 +18,19 @@ public class FishStreet {
             System.out.println("Run from the folder containing cemetery.txt, or pass its path as an argument.");
             return;
         }
-        System.out.println("Loaded " + cemetery.size() + " burials from " + file
-                + " (" + cemetery.getDuplicatesRemoved() + " duplicates removed, "
+        System.out.println("Loaded " + cemetery.size() + " burials ("
+                + cemetery.getDuplicatesRemoved() + " duplicates removed, "
                 + cemetery.getLinesSkipped() + " unreadable lines skipped).");
 
         Scanner in = new Scanner(System.in);
         boolean running = true;
         while (running) {
             System.out.println();
-            System.out.println("[1] buried on date");
-            System.out.println("[2] Burials date range at a location");
-            System.out.println("[3] Burials date range (any location)");
-            System.out.println("[4] Total burials Count");
-            System.out.println("[5] All burials");
+            System.out.println("[1] Specific date");
+            System.out.println("[2] Burials in a date range at a location");
+            System.out.println("[3] Burials in a date range (any location)");
+            System.out.println("[4] Total number of burials");
+            System.out.println("[5] All burials in date order");
             System.out.println("[6] Quit");
             System.out.print("Choose an option: ");
             if (!in.hasNextLine()) break;
@@ -36,8 +38,11 @@ public class FishStreet {
                 case "1": byDate(cemetery, in); break;
                 case "2": byRange(cemetery, in, true); break;
                 case "3": byRange(cemetery, in, false); break;
-                case "4": System.out.println("Total burials: " + cemetery.size()); break;
-                case "5": print(cemetery.all()); break;
+                case "4": System.out.println("Number of people in the Fishstreet cemetery:  " + cemetery.size()); break;
+                case "5":
+                    System.out.println("Printout of burials in date order:");
+                    print(cemetery.all());
+                    break;
                 case "6": running = false; break;
                 default: System.out.println("Please enter 1-6.");
             }
@@ -45,20 +50,24 @@ public class FishStreet {
     }
 
     private static void byDate(Cemetery c, Scanner in) {
-        LocalDate d = askDate(in, "Enter date (mm/dd/yyyy): ");
+        System.out.println();
+        LocalDate d = askDate(in, "Enter a Date: ");
         if (d == null) return;
         List<Tombstone> found = c.buriedOn(d);
         if (found.isEmpty()) {
-            System.out.println("No one was buried on that date.");
+            System.out.println("None found");
         } else {
-            print(found);
+            for (Tombstone t : found) {
+                System.out.println(t.getName());
+            }
         }
     }
 
     private static void byRange(Cemetery c, Scanner in, boolean withLocation) {
-        LocalDate start = askDate(in, "Enter start date (mm/dd/yyyy): ");
+        System.out.println();
+        LocalDate start = askDate(in, "Enter start date: ");
         if (start == null) return;
-        LocalDate end = askDate(in, "Enter end date (mm/dd/yyyy): ");
+        LocalDate end = askDate(in, "Enter end date: ");
         if (end == null) return;
         if (start.isAfter(end)) {
             System.out.println("The start date must not be after the end date.");
@@ -70,21 +79,33 @@ public class FishStreet {
             location = in.hasNextLine() ? in.nextLine().trim() : "";
         }
         List<Tombstone> found = c.range(start, end, location);
-        print(found);
-        System.out.println("Number of people buried: " + found.size());
-        if (!found.isEmpty()) {
-            System.out.println("Average age: " + Tombstone.formatAge(Cemetery.averageAgeDays(found)));
+        String header = "From (" + Tombstone.longDate(start) + ") to (" + Tombstone.longDate(end) + ")";
+        if (withLocation && location != null && !location.isEmpty()) {
+            header += " on (" + location + ")";
+        }
+        System.out.println(header + ":");
+        System.out.println("Number of people: " + found.size());
+        long avg = Cemetery.averageAgeDays(found);
+        if (avg >= 0) {
+            System.out.println("Average age: " + Tombstone.formatAge(avg));
         }
     }
 
     private static LocalDate askDate(Scanner in, String prompt) {
         System.out.print(prompt);
         if (!in.hasNextLine()) return null;
+        String text = in.nextLine().trim();
         try {
-            String[] p = in.nextLine().trim().split("/");
+            if (text.contains("/")) {
+                String[] p = text.split("/");
+                if (p.length != 3) throw new IllegalArgumentException();
+                return LocalDate.of(Integer.parseInt(p[2].trim()),
+                        Integer.parseInt(p[0].trim()), Integer.parseInt(p[1].trim()));
+            }
+            String[] p = text.split("\\s+");
             if (p.length != 3) throw new IllegalArgumentException();
-            return LocalDate.of(Integer.parseInt(p[2].trim()),
-                    Integer.parseInt(p[0].trim()), Integer.parseInt(p[1].trim()));
+            int month = Arrays.asList(MONTHS).indexOf(p[1].substring(0, 3).toLowerCase()) + 1;
+            return LocalDate.of(Integer.parseInt(p[2]), month, Integer.parseInt(p[0]));
         } catch (RuntimeException e) {
             System.out.println("Invalid date. Use mm/dd/yyyy, e.g. 01/05/1813.");
             return null;
