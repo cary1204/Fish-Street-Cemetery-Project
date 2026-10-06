@@ -8,7 +8,7 @@ Group5: Kairui & Neil
 - `/fishStreet/FishStreet.java` - main.
 
 ## How to run
-
+from root folder
     javac group5/fishStreet/*.java
     java group5.fishStreet.FishStreet
 
@@ -20,8 +20,7 @@ You could parse args and use other txt:
 Pick a menu option, then follow the prompts. Dates are `mm/dd/yyyy` (e.g. `01/05/1813`).
 
 1. Burials on one date.
-2. Burials in a date range at a location (matches any location containing the text, case not sensitive,
-   example: `Lambeth Hill` will count as `Crane Court Lambeth Hill`). Prints the count and average age.
+2. Burials in a date range at a location. Prints the count and average age.
 3. Same function as #2 except the location function
 4. Total number of burials.
 5. All burials in ascending date order.
