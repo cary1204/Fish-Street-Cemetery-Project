@@ -9,12 +9,12 @@ Group5: Kairui & Neil
 
 ## How to run
 
-    javac group1/fishStreet/*.java
-    java group1.fishStreet.FishStreet
+    javac group5/fishStreet/*.java
+    java group5.fishStreet.FishStreet
 
 You could parse args and use other txt:
 
-    java group1.fishStreet.FishStreet path/to/cemetery.txt
+    java group5.fishStreet.FishStreet path/to/cemetery.txt
 
 ## Using the program
 Pick a menu option, then follow the prompts. Dates are `mm/dd/yyyy` (e.g. `01/05/1813`).
