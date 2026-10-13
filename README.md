@@ -51,9 +51,6 @@ Bing Search AI/Google Search AI was used for some of the researches
 - Reading a file line by line (BufferedReader, try-with-resources):
   - https://mkyong.com/java/how-to-read-file-from-java-bufferedreader-example/
   - https://stackabuse.com/reading-a-file-line-by-line-in-java/
-- Regex (Pattern, Matcher, capture groups):
-  - https://dev.java/learn/regex/groups/
-  - https://dev.library.kiwix.org/content/stackoverflow_en_nopic_2021-08/questions/4589643/identifying-capture-groups-in-a-regex-pattern
 - Dates: strict parsing instead of lenient parsing:
   - https://dev.library.kiwix.org/content/stackoverflow_en_nopic_2021-08/questions/6028823/simpledateformat-giving-wrong-date-instead-of-error
 - Java String compareToIgnoreCase() Method
