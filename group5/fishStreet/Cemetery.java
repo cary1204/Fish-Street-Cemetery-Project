@@ -1,3 +1,11 @@
+/*
+@Cary
+@Neil
+@Cemetery class
+@10/09/2026
+Loads the file and stores them in tombstone and stores in the Cemetery list
+The Cemetery is a treeset because it auto-sorts with the compareTo on Tombstone clss
+*/
 package group5.fishStreet;
 
 import java.io.*;
