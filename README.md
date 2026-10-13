@@ -47,7 +47,7 @@ Bing Search AI/Google Search AI was used for some of the researches
   - https://callicoder.com/java-treeset
 - compareTo consistent with equals:
   - https://blog.joda.org/2012/11/pitfalls-of-consistent-with-equals.html
-  - https://rules.sonarsource.com/java/type/Code%20Smell/RSPEC-1210
+  - https://www.w3schools.com/JAVA/java_ref_string.asp
 - Reading a file line by line (BufferedReader, try-with-resources):
   - https://mkyong.com/java/how-to-read-file-from-java-bufferedreader-example/
   - https://stackabuse.com/reading-a-file-line-by-line-in-java/
