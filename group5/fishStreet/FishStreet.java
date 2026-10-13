@@ -1,3 +1,11 @@
+/*
+@Cary
+@Neil
+@Main method, the UI, Frontend
+@10/09/2026
+Brings everything together with the method
+*/
+
 package group5.fishStreet;
 
 import java.io.IOException;
@@ -18,9 +26,6 @@ public class FishStreet {
             System.out.println("Run from the folder containing cemetery.txt, or pass its path as an argument.");
             return;
         } // some error handling for file reading from stackoverflow
-        System.out.println("Loaded " + cemetery.size() + " burials ("
-                + cemetery.getDuplicatesRemoved() + " duplicates removed, "
-                + cemetery.getLinesSkipped() + " unreadable lines skipped).");
 
         Scanner in = new Scanner(System.in);
         boolean running = true;
