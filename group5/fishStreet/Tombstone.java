@@ -1,3 +1,10 @@
+/*
+@Cary
+@Neil
+@Tombstone class, backend
+@10/09/2026
+tombstone class, makes everyperson recorded a tombstone
+*/
 package group5.fishStreet;
 
 import java.time.LocalDate;
@@ -95,7 +102,7 @@ public class Tombstone implements Comparable<Tombstone> {
         return compareTo((Tombstone) obj) == 0;
     }
 
-    @Override
+    @Override // hash code to store data all in oneDS
     public int hashCode() {
         int h = burialDate.hashCode();
         h = 31 * h + name.toLowerCase().hashCode();
