@@ -6,11 +6,9 @@ Group5: Kairui & Neil
 - `/fishStreet/Tombstone.java` -  burial record (name, date, age, location); Comparable
 - `/fishStreet/Cemetery.java` - reads/stores file in a `TreeSet`; dates
 - `/fishStreet/FishStreet.java` - main.
-- `.gitignore` - ignoring error logs and class files
 
-## How to run / Intructiosn
+## How to run
 from root folder
-
     javac group5/fishStreet/*.java
     java group5.fishStreet.FishStreet
 
@@ -58,9 +56,14 @@ Bing Search AI/Google Search AI was used for some of the researches
   - https://dev.library.kiwix.org/content/stackoverflow_en_nopic_2021-08/questions/4589643/identifying-capture-groups-in-a-regex-pattern
 - Dates: strict parsing instead of lenient parsing:
   - https://dev.library.kiwix.org/content/stackoverflow_en_nopic_2021-08/questions/6028823/simpledateformat-giving-wrong-date-instead-of-error
+- Java String compareToIgnoreCase() Method
+  - https://www.w3schools.com/JAVA/ref_string_comparetoignorecase.asp
 - String.format column padding:
   - https://dev.library.kiwix.org/content/stackoverflow_en_nopic_2021-08/a/391978
   - https://mkyong.com/java/java-string-format-examples/
 - Scanner input and console menus:
   - https://dev.library.kiwix.org/content/stackoverflow_en_nopic_2021-08/questions/5032356/using-scanner-nextline
   - https://medium.com/@AlexanderObregon/creating-user-menus-in-java-with-loops-and-switch-040149bd9732
+- Hashing and prime Odd numbers
+  - https://www.w3schools.com/java/ref_string_hashcode.asp
+  - https://stackoverflow.com/questions/3613102/why-use-a-prime-number-in-hashcode
