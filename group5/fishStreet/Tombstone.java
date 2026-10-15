@@ -103,6 +103,7 @@ public class Tombstone implements Comparable<Tombstone> {
     }
 
     @Override // hash code to store data all in oneDS
+    // unused but kept for references and future implementation
     public int hashCode() {
         int h = burialDate.hashCode();
         h = 31 * h + name.toLowerCase().hashCode();
